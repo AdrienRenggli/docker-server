@@ -1,0 +1,7 @@
+UPLOAD_LOCATION=/mnt/immich-storage
+DB_DATA_LOCATION=/data/immich/postgres
+TZ=Europe/Zurich
+IMMICH_VERSION=v3
+DB_PASSWORD=DB_PASSWORD
+DB_USERNAME=postgres
+DB_DATABASE_NAME=immich

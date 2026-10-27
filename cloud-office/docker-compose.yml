@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  nextcloud-db:
+    image: postgres:15-alpine
+    container_name: nextcloud_db
+    restart: unless-stopped
+    volumes:
+      - /data/nextcloud/db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: nextcloud
+      POSTGRES_USER: nextcloud
+      POSTGRES_PASSWORD: ${DB_PWD}
+
+  nextcloud-app:
+    image: nextcloud:apache
+    container_name: nextcloud_app
+    restart: unless-stopped
+    depends_on:
+      - nextcloud-db
+    ports:
+      - "8084:80"
+    volumes:
+      - /data/nextcloud:/var/www/html
+    environment:
+      POSTGRES_HOST: nextcloud-db
+      POSTGRES_DB: nextcloud
+      POSTGRES_USER: nextcloud
+      POSTGRES_PASSWORD: ${DB_PWD}
+      NC_allow_local_remote_servers: "true"
+      NEXTCLOUD_TRUSTED_DOMAINS: "nextcloud-app"
+
+  onlyoffice-docs:
+    image: onlyoffice/documentserver:latest
+    container_name: onlyoffice
+    restart: unless-stopped
+    ports:
+      - "8088:80"
+    environment:
+      JWT_ENABLED: "true"
+      JWT_SECRET: ${JWT_SECRET}
+    volumes:
+      - /data/onlyoffice/data:/var/www/onlyoffice/Data
+      - /data/onlyoffice/logs:/var/log/onlyoffice
+
+volumes:
+  db_data:
+  nextcloud_data:
+  onlyoffice_data:
+  onlyoffice_logs:

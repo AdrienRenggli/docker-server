@@ -1,0 +1,14 @@
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    restart: unless-stopped
+    ports:
+      - 83:3000
+    volumes:
+      - /data/homepage/config:/app/config # Make sure your local config directory exists
+      - /var/run/docker.sock:/var/run/docker.sock:ro # (optional) For docker integrations
+      - /mnt/immich-storage:/immich
+      - /mnt/media:/media
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: 172.22.22.215,172.22.22.215:83,172.22.22.215:3000 # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
