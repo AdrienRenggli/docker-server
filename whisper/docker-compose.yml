@@ -1,0 +1,19 @@
+services:
+  subgen:
+    image: mccloud/subgen:latest
+    container_name: subgen
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+    environment:
+      - WHISPER_MODEL=${WHISPER_MODEL:-medium}
+      # Set to "cuda" if you have an Nvidia GPU passed to Docker
+      - TRANSCRIBE_DEVICE=cpu
+      # Lower to 1 if you encounter memory issues or crashes during processing
+      - CONCURRENT_TRANSCRIPTIONS=1
+    volumes:
+      - /data/whisper:/subgen/models
+      # Optional but recommended for audio sync: Subgen can compensate for audio offset 
+      # if it can read the source video files. These paths MUST exactly match what Bazarr sees.
+      - /mnt/media/shows:/tv
+      - /mnt/media/movies:/movies

@@ -21,7 +21,7 @@ Docker configuration for my homelab server. This repository contains various sel
 | **Network** | `Pi-hole`, `WireGuard`, `DuckDNS`, `NPM` | Network-wide ad blocking, secure remote VPN access, Dynamic DNS, Nginx Proxy Manager. |
 | **Photos** | `Immich` | Self-hosted backup solution for photos and videos. |
 | **Office** | `Firefly III`, `Nextcloud`, `ONLYOFFICE` | Personal finance, local cloud, and office suite. |
-| **AI** | `Ollama`, `Open WebUI` | Local AI models and chat interface. Auto-pulls `qwen2.5-coder:7b`, `llama3.1:8b`, `qwen2.5:14b`, and `nomic-embed-text` embeddings. |
+| **AI** | `Ollama`, `Open WebUI`, `whisper` | Local AI models and chat interface. Auto-pulls `qwen2.5-coder:7b`, `llama3.1:8b`, `qwen2.5:14b`, and `nomic-embed-text` embeddings. Speech-to-Text model. |
 | **Torrent** | `qBittorrent`, `gluetun` | Torrent downloader routed through a VPN killswitch. |
 | **Utilities** | `Homepage`, `UpSnap`, `WUD` | Service dashboard, Wake-on-LAN, and update monitoring. |
 
@@ -89,6 +89,7 @@ docker compose up -d
 
 ```plaintext
 .
+├── ai/               # Local AI models and web interface
 ├── cloud-office/     # Nextcloud and ONLYOFFICE
 ├── duckdns/          # Dynamic DNS (DuckDNS)
 ├── esp_home/         # Microcontroller programmer for smart devices
@@ -99,11 +100,11 @@ docker compose up -d
 ├── jellyfin/         # Media server and browser
 ├── minecraft/        # Local Minecraft server
 ├── npm/              # Nginx Proxy Manager
-├── ollama/           # Local AI models and web interface
 ├── pi-hole/          # DNS ad-blocker
 ├── spoolman/         # 3D filament database  
 ├── upsnap/           # Wake-on-LAN
 ├── wireguard/        # VPN server
+├── whisper/          # Speech-to-Text AI model
 └── wud/              # Container update monitoring
 
 ```
