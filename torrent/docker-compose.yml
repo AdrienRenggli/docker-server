@@ -18,7 +18,7 @@ services:
       - VPN_SERVICE_PROVIDER=protonvpn
       - VPN_TYPE=openvpn
       # OpenVPN
-      - OPENVPN_USER=${OPENVPN_USER}
+      - OPENVPN_USER=${OPENVPN_USER}+pmp # +pmp is needed to use portforwarding with protonvpn (more info and available flags: https://protonvpn.com/support/port-forwarding-manual-setup)
       - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
       # Wireguard:
       # - WIREGUARD_PRIVATE_KEY=wOEI9rqqbDwnN8/Bpp22sVz48T71vJ4fYmFWujulwUU=
